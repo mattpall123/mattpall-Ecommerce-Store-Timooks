@@ -1,0 +1,187 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.headerButtons {
+    display: flex;
+    gap: 10px;
+}
+
+.filterBar {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.searchForm {
+    display: flex;
+    gap: 10px;
+}
+
+.divider {
+    height: 30px;
+    border-left: 1px solid var(--wood-light);
+    margin: 0 10px;
+}
+
+.bookGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.bookCard {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.bookLink {
+    text-decoration: none;
+    color: inherit;
+    flex: 1;
+}
+
+.bookImage {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.bookTitle {
+    margin: 0 0 10px 0;
+    font-size: 1.2rem;
+    color: var(--wood-dark);
+}
+
+.bookAuthor {
+    color: var(--wood-light);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.bookFooter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+}
+
+.bookPrice {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: var(--wood-medium);
+}
+
+.stockAvailable {
+    font-size: 0.8rem;
+    color: var(--status-green);
+    font-weight: bold;
+}
+
+.stockOut {
+    font-size: 0.8rem;
+    color: var(--status-red);
+    font-weight: bold;
+}
+
+.primaryBtn {
+    padding: 10px 20px;
+    background-color: var(--wood-medium);
+    color: white;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    margin-top: 1rem;
+    font-weight: bold;
+}
+
+.darkBtn {
+    padding: 8px 16px;
+    background-color: var(--wood-dark);
+    color: white;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+}
+
+.disabledBtn {
+    width: 100%;
+    padding: 10px;
+    background-color: #ccc;
+    color: white;
+    border: none;
+    border-radius: var(--radius);
+    margin-top: 1rem;
+    cursor: not-allowed;
+}
+
+.input {
+    padding: 8px;
+    width: 250px;
+    border-radius: var(--radius);
+    border: 1px solid var(--wood-light);
+    font-size: 1rem;
+}
+
+.select {
+    padding: 8px;
+    border-radius: var(--radius);
+    border: 1px solid var(--wood-light);
+    font-size: 1rem;
+    background-color: white;
+    cursor: pointer;
+}
+
+.imagePlaceholder {
+    height: 180px;
+    width: 100%;
+    background-color: var(--paper-bg);
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--wood-light);
+    border: 1px solid var(--wood-accent);
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+
+.titleRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  height: 40px;
+}
+
+.bookTitle {
+  flex: 1;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.wishlistBtn {
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 4px;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 0; 
+
+}
+
+.lowStock {
+  color: red;
+  font-weight: bold;
+  font-size: 0.85rem;
+  margin-top: -6px;
+  margin-bottom: 6px;
+}

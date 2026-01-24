@@ -1,0 +1,172 @@
+.wishlistContainer {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 1rem;
+}
+
+.wishlistContainer h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: var(--wood-dark);
+}
+
+.loading {
+    text-align: center;
+    padding: 3rem;
+    font-size: 1.2rem;
+    color: var(--wood-light);
+}
+
+.guestNotice {
+    background-color: #fff3cd;
+    border: 1px solid #ffc107;
+    border-left: 4px solid #ffc107;
+    padding: 1rem;
+    border-radius: var(--radius);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.guestNotice a {
+    color: var(--wood-dark);
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.emptyWishlist {
+    text-align: center;
+    padding: 3rem;
+    background-color: var(--paper-bg);
+    border-radius: var(--radius);
+    margin-top: 2rem;
+}
+
+.emptyWishlist p {
+    font-size: 1.2rem;
+    color: var(--wood-light);
+    margin-bottom: 1.5rem;
+}
+
+.wishlistTable {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tableHeader {
+    background-color: var(--wood-medium);
+    color: white;
+}
+
+.tableHeader th {
+    padding: 1rem;
+    text-align: left;
+    font-weight: bold;
+    color: white;
+}
+
+.tableRow {
+    border-bottom: 1px solid #e0e0e0;
+    transition: background-color 0.2s;
+}
+
+.tableCell {
+    padding: 1rem;
+    vertical-align: middle;
+}
+
+.bookInfo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.bookImage {
+    width: 60px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid #e0e0e0;
+}
+
+.bookTitle {
+    font-weight: 600;
+    color: black;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.authorText {
+    color: var(--wood-light);
+    font-size: 0.9rem;
+}
+
+.priceText {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: black;
+}
+
+.inStock {
+    color: var(--status-green);
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.outOfStock {
+    color: var(--status-red);
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.actionButtons {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.addBtn {
+    padding: 8px 16px;
+    background-color: var(--wood-medium);
+    color: white;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+.deleteBtn {
+    padding: 8px 16px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+.disabledBtn {
+    padding: 8px 16px;
+    background-color: #ccc;
+    color: #666;
+    border: none;
+    border-radius: var(--radius);
+    cursor: not-allowed;
+}
+
+.linkBtn {
+    padding: 12px 24px;
+    background-color: var(--wood-medium);
+    color: white;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: background-color 0.2s;
+}

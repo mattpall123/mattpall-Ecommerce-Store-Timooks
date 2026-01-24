@@ -1,0 +1,23 @@
+
+Get all Books
+curl -v "http://localhost:8080/api/books"
+
+Search Functionality
+curl -v "http://localhost:8080/api/books/search?keyword=Java"
+
+User Login - Failure Case 
+curl -X POST "http://localhost:8080/api/accounts/login" \
+     -H "Content-Type: application/json" \
+     -d '{"email":"admin@test.com", "password":"WRONG_PASSWORD"}'
+
+User Login - Success Case
+(Store the ID for later use)
+curl -X POST "http://localhost:8080/api/accounts/login" \
+     -H "Content-Type: application/json" \
+     -d '{"email":"customer@test.com", "password":"testpass"}'
+
+Get User Cart
+curl -v "http://localhost:8080/api/cart?userId=1"
+
+Admin: Get Sales History 
+curl -v "http://localhost:8080/api/admin/orders"

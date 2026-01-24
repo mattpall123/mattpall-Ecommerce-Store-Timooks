@@ -1,0 +1,90 @@
+:root {
+  /* Timber Coffee colours */
+  --wood-dark: #3E2723;   /* Text, Navbar */
+  --wood-medium: #5D4037; /* Primary Buttons */
+  --wood-light: #8D6E63;  /* Secondary Buttons */
+  --wood-accent: #D7CCC8; /* Backgrounds, borders */
+  
+  --paper-bg: #FDFBF7;    /* Off-white/Cream for Page Background */
+  --card-bg: #FFFFFF;     /* Pure White for Cards */
+  
+  --status-green: #2E7D32; 
+  --status-red: #C62828;   
+
+
+  --radius: 8px;
+  --shadow: 0 4px 6px rgba(62, 39, 35, 0.1); 
+}
+
+body {
+  margin: 0;
+  font-family: 'Georgia', serif;
+  background-color: var(--paper-bg);
+  color: var(--wood-dark);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--wood-medium);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--wood-accent);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+}
+
+.heading {
+  color: var(--wood-dark);
+  border-bottom: 2px solid var(--wood-accent);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* TIMBER TABLE STYLES */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  background-color: var(--card-bg);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+thead {
+  background-color: var(--wood-accent); 
+}
+
+th {
+  color: var(--wood-dark);
+  font-weight: bold;
+  text-align: left; 
+  padding: 1rem;     
+  border-bottom: 2px solid var(--wood-medium);
+}
+
+td {
+  padding: 1rem;
+  border-bottom: 1px solid #eee;
+  color: var(--wood-dark);
+  vertical-align: middle;
+}
+
+tr:hover td {
+  background-color: #fafafa;
+}

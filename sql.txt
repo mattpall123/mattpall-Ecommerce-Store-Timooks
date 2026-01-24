@@ -1,0 +1,299 @@
+This was dumped from AWS server
+
+
+DATA FROM SQL IN /resources/data.sql
+
+--
+-- Table structure for table `account`
+--
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `account` (
+  `account_id` int NOT NULL AUTO_INCREMENT,
+  `role_id` int NOT NULL,
+  `created_at` datetime(6) DEFAULT NULL,
+  `credit_card` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `first_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `last_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password_hash` varbinary(255) NOT NULL,
+  PRIMARY KEY (`account_id`),
+  UNIQUE KEY `UKq0uja26qgu1atulenwup9rxyr` (`email`),
+  KEY `FKd4vb66o896tay3yy52oqxr9w0` (`role_id`),
+  CONSTRAINT `FKd4vb66o896tay3yy52oqxr9w0` FOREIGN KEY (`role_id`) REFERENCES `role` (`role_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `address`
+--
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `address` (
+  `account_id` int NOT NULL,
+  `address_id` int NOT NULL AUTO_INCREMENT,
+  `is_default_billing` bit(1) DEFAULT NULL,
+  `is_default_shipping` bit(1) DEFAULT NULL,
+  `city` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `country` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `label` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `line1` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `line2` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `postal_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `region` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`address_id`),
+  KEY `FKascogpq8x3gfx04oy2fr6l3i5` (`account_id`),
+  CONSTRAINT `FKascogpq8x3gfx04oy2fr6l3i5` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `book`
+--
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `book` (
+  `book_id` int NOT NULL AUTO_INCREMENT,
+  `category_id` int NOT NULL,
+  `page_count` int DEFAULT NULL,
+  `price` decimal(38,2) NOT NULL,
+  `publication_year` int DEFAULT NULL,
+  `publisher_id` int NOT NULL,
+  `stock` int DEFAULT NULL,
+  `created_at` datetime(6) DEFAULT NULL,
+  `author` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `cover_image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci,
+  `isbn` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`book_id`),
+  UNIQUE KEY `UKehpdfjpu1jm3hijhj4mm0hx9h` (`isbn`),
+  KEY `FKam9riv8y6rjwkua1gapdfew4j` (`category_id`),
+  KEY `FKgtvt7p649s4x80y6f4842pnfq` (`publisher_id`),
+  CONSTRAINT `FKam9riv8y6rjwkua1gapdfew4j` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`),
+  CONSTRAINT `FKgtvt7p649s4x80y6f4842pnfq` FOREIGN KEY (`publisher_id`) REFERENCES `publisher` (`publisher_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1057 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `cart_item`
+--
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `cart_item` (
+  `book_id` int NOT NULL,
+  `cart_id` int NOT NULL,
+  `cart_item_id` int NOT NULL AUTO_INCREMENT,
+  `quantity` int DEFAULT NULL,
+  `unit_price` decimal(38,2) DEFAULT NULL,
+  PRIMARY KEY (`cart_item_id`),
+  KEY `FKis5hg85qbs5d91etr4mvd4tx6` (`book_id`),
+  KEY `FKf9e1brwb4ea9cxtvxbs0wugdt` (`cart_id`),
+  CONSTRAINT `FKf9e1brwb4ea9cxtvxbs0wugdt` FOREIGN KEY (`cart_id`) REFERENCES `shopping_cart` (`cart_id`),
+  CONSTRAINT `FKis5hg85qbs5d91etr4mvd4tx6` FOREIGN KEY (`book_id`) REFERENCES `book` (`book_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `category`
+--
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `category` (
+  `category_id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`category_id`),
+  UNIQUE KEY `UK46ccwnsi9409t36lurvtyljak` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=223 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `inventory_transaction`
+--
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `inventory_transaction` (
+  `book_id` int NOT NULL,
+  `change_qty` int NOT NULL,
+  `order_id` int DEFAULT NULL,
+  `txn_id` int NOT NULL AUTO_INCREMENT,
+  `created_at` datetime(6) DEFAULT NULL,
+  `reason` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`txn_id`),
+  KEY `FKd9dxx8yp3yg99t3rq2phyl0wr` (`book_id`),
+  KEY `FKe8ohmpbbhp1u6c5584dh2f3hi` (`order_id`),
+  CONSTRAINT `FKd9dxx8yp3yg99t3rq2phyl0wr` FOREIGN KEY (`book_id`) REFERENCES `book` (`book_id`),
+  CONSTRAINT `FKe8ohmpbbhp1u6c5584dh2f3hi` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `order_item`
+--
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `order_item` (
+  `book_id` int NOT NULL,
+  `line_total` decimal(38,2) DEFAULT NULL,
+  `order_id` int NOT NULL,
+  `order_item_id` int NOT NULL AUTO_INCREMENT,
+  `quantity` int DEFAULT NULL,
+  `unit_price` decimal(38,2) DEFAULT NULL,
+  PRIMARY KEY (`order_item_id`),
+  KEY `FKb033an1f8qmpbnfl0a6jb5njs` (`book_id`),
+  KEY `FKt4dc2r9nbvbujrljv3e23iibt` (`order_id`),
+  CONSTRAINT `FKb033an1f8qmpbnfl0a6jb5njs` FOREIGN KEY (`book_id`) REFERENCES `book` (`book_id`),
+  CONSTRAINT `FKt4dc2r9nbvbujrljv3e23iibt` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `orders`
+--
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `orders` (
+  `account_id` int DEFAULT NULL,
+  `order_id` int NOT NULL AUTO_INCREMENT,
+  `shipping_fee` decimal(38,2) DEFAULT NULL,
+  `subtotal` decimal(38,2) DEFAULT NULL,
+  `tax` decimal(38,2) DEFAULT NULL,
+  `total` decimal(38,2) DEFAULT NULL,
+  `order_date` datetime(6) DEFAULT NULL,
+  `bill_city` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `bill_country` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `bill_line1` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `bill_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `bill_postal_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ship_city` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ship_country` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ship_line1` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ship_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ship_postal_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`order_id`),
+  KEY `FK3c7gbsfawn58r27cf5b2km72f` (`account_id`),
+  CONSTRAINT `FK3c7gbsfawn58r27cf5b2km72f` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `payment`
+--
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `payment` (
+  `amount` decimal(38,2) NOT NULL,
+  `order_id` int NOT NULL,
+  `payment_id` int NOT NULL AUTO_INCREMENT,
+  `processed_at` datetime(6) DEFAULT NULL,
+  `currency` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `failure_reason` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `provider` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `txn_reference` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`payment_id`),
+  UNIQUE KEY `UKmf7n8wo2rwrxsd6f3t9ub2mep` (`order_id`),
+  CONSTRAINT `FKlouu98csyullos9k25tbpk4va` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `publisher`
+--
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `publisher` (
+  `publisher_id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`publisher_id`),
+  UNIQUE KEY `UKh9trv4xhmh6s68vbw9ba6to70` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=297 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `reviews`
+--
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `reviews` (
+  `rating` int NOT NULL,
+  `book_id` bigint NOT NULL,
+  `created_at` datetime(6) NOT NULL,
+  `review_id` bigint NOT NULL AUTO_INCREMENT,
+  `user_id` bigint NOT NULL,
+  `comment` varchar(1000) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`review_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `role`
+--
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `role` (
+  `role_id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`role_id`),
+  UNIQUE KEY `UK8sewwnpamngi6b1dwaa88askk` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `shopping_cart`
+--
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `shopping_cart` (
+  `account_id` int NOT NULL,
+  `cart_id` int NOT NULL AUTO_INCREMENT,
+  `updated_at` datetime(6) DEFAULT NULL,
+  PRIMARY KEY (`cart_id`),
+  UNIQUE KEY `UKb9hq28d0x4o254wdcu07xcv72` (`account_id`),
+  CONSTRAINT `FKini8djj4po3uum3tg3riuv04s` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `wishlist`
+--
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `wishlist` (
+  `book_id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `wishlist_id` int NOT NULL AUTO_INCREMENT,
+  `created_at` datetime(6) NOT NULL,
+  PRIMARY KEY (`wishlist_id`),
+  KEY `FK94k0l1f4gpde7nw2scncp8pp4` (`book_id`),
+  CONSTRAINT `FK94k0l1f4gpde7nw2scncp8pp4` FOREIGN KEY (`book_id`) REFERENCES `book` (`book_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+SET @@SESSION.SQL_LOG_BIN = @MYSQLDUMP_TEMP_LOG_BIN;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;

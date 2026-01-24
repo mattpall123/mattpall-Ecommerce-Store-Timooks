@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  # Backend Service (Spring Boot)
+  backend:
+    build: ./backend
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://database4413.c4psogo40q1l.us-east-1.rds.amazonaws.com:3306/RetailBookstoreDB?useSSL=true&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    networks:
+      - estore-network
+
+  # Frontend Service (React/Vite)
+  frontend:
+    build: ./frontend
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+    networks:
+      - estore-network
+
+networks:
+  estore-network:
+    driver: bridge

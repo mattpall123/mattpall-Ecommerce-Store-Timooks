@@ -1,0 +1,98 @@
+.cartContainer {
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.loading {
+    padding: 2rem;
+}
+
+.emptyCart {
+    margin-top: 2rem;
+}
+
+.cartTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 2rem;
+}
+
+.tableHeader {
+    border-bottom: 2px solid #ddd;
+    text-align: left;
+}
+
+.tableRow {
+    border-bottom: 1px solid #eee;
+}
+
+.tableCell {
+    padding: 10px;
+}
+
+.authorText {
+    font-size: 0.9em;
+    color: #666;
+}
+
+.cartFooter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 2px solid #ddd;
+    padding-top: 1rem;
+}
+
+
+.deleteBtn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.checkoutBtn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 10px;
+    font-size: 0.7rem;
+}
+
+.secondaryBtn {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.linkBtn {
+    background-color: transparent;
+    color: #007bff;
+    border: 1px solid #007bff;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.confirmBtn {
+    background-color: #28a745;
+    color: white; 
+    border: none; 
+    padding: 5px;
+    cursor: pointer; 
+}
+
+.itemTable {
+    display: flex; 
+    align-items: center; 
+    gap: 5px;
+}
